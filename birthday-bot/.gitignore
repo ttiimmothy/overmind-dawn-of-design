@@ -5,8 +5,8 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
+package-lock.json
+yarn.lock
 
 # next.js
 /.next/
@@ -32,4 +32,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+docker-compose.yml

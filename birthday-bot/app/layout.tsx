@@ -8,7 +8,7 @@ import { PetraWallet } from "petra-plugin-wallet-adapter";
 import { MartianWallet } from "@martianwallet/aptos-wallet-adapter";
 
 // List of supported wallets to be used by the AptosWalletAdapterProvider below.
-// 
+//
 // NOTE: Each wallet is a plugin that implements the Aptos wallet standard.
 const wallets = [new PetraWallet(), new MartianWallet()];
 

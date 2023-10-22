@@ -1,5 +1,5 @@
-'use client'
- 
+"use client";
+
 import {
   ColumnDef,
   flexRender,
@@ -7,7 +7,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   VisibilityState,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -25,32 +25,31 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
-import { useWallet } from "@aptos-labs/wallet-adapter-react"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 interface HistoryTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
 /* 
   Component to display the history of events in a table.
 */
 export function HistoryTable<TData, TValue>({
-  columns, 
-  data, 
+  columns,
+  data,
 }: HistoryTableProps<TData, TValue>) {
-
   // wallet adapter state
   const { isLoading, connected } = useWallet();
 
   /* 
     Table configuration state
   */
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(5);
 
@@ -81,16 +80,14 @@ export function HistoryTable<TData, TValue>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns 
+              Columns
               <ChevronDown className="ml-2" size={16} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
+              .filter((column) => column.getCanHide())
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
@@ -103,7 +100,7 @@ export function HistoryTable<TData, TValue>({
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -123,7 +120,7 @@ export function HistoryTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -140,6 +137,16 @@ export function HistoryTable<TData, TValue>({
                   </TableCell>
                 </TableRow>
               */
+              isLoading && (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    Loading...
+                  </TableCell>
+                </TableRow>
+              )
             }
             {
               /*
@@ -157,6 +164,16 @@ export function HistoryTable<TData, TValue>({
                   </TableCell>
                 </TableRow>
               */
+              !isLoading && !connected && (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    Connect your wallet to view your history.
+                  </TableCell>
+                </TableRow>
+              )
             }
             {
               /* 
@@ -175,6 +192,18 @@ export function HistoryTable<TData, TValue>({
                   </TableCell>
                 </TableRow>
               */
+              !isLoading &&
+                connected &&
+                table.getRowModel().rows?.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
+                      No data.
+                    </TableCell>
+                  </TableRow>
+                )
             }
             {
               /*
@@ -200,6 +229,25 @@ export function HistoryTable<TData, TValue>({
                   ))}
                 </TableRow>
               */
+              !isLoading &&
+                connected &&
+                table.getRowModel().rows &&
+                table.getRowModel().rows?.length > 0 &&
+                table.getRowModel().rows?.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
             }
           </TableBody>
         </Table>
@@ -215,22 +263,25 @@ export function HistoryTable<TData, TValue>({
           <DropdownMenuContent>
             <DropdownMenuLabel>Page Size</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup value={pageSize.toString()} onValueChange={
-              (value) => {
+            <DropdownMenuRadioGroup
+              value={pageSize.toString()}
+              onValueChange={(value) => {
                 if (value === `${data.length}`) {
-                  setPageSize(data.length)
-                  table.setPageSize(data.length)
-                } else { 
-                  setPageSize(parseInt(value))
-                  table.setPageSize(parseInt(value))
+                  setPageSize(data.length);
+                  table.setPageSize(data.length);
+                } else {
+                  setPageSize(parseInt(value));
+                  table.setPageSize(parseInt(value));
                 }
-                setPageNumber(1)
-                table.setPageIndex(0)
-              }
-            }>
+                setPageNumber(1);
+                table.setPageIndex(0);
+              }}
+            >
               <DropdownMenuRadioItem value="5">5</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="15">15</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value={`${data.length}`}>All</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value={`${data.length}`}>
+                All
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -238,8 +289,8 @@ export function HistoryTable<TData, TValue>({
           variant="outline"
           size="icon"
           onClick={() => {
-            table.previousPage()
-            setPageNumber(pageNumber - 1)
+            table.previousPage();
+            setPageNumber(pageNumber - 1);
           }}
           disabled={!table.getCanPreviousPage()}
         >
@@ -252,8 +303,8 @@ export function HistoryTable<TData, TValue>({
           variant="outline"
           size="icon"
           onClick={() => {
-            table.nextPage()
-            setPageNumber(pageNumber + 1)
+            table.nextPage();
+            setPageNumber(pageNumber + 1);
           }}
           disabled={!table.getCanNextPage()}
         >
@@ -261,5 +312,5 @@ export function HistoryTable<TData, TValue>({
         </Button>
       </div>
     </div>
-  )
+  );
 }
