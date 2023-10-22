@@ -32,7 +32,7 @@ This is the starter template for Overmind's FE quest built on top of the Birthda
 
 # Tech Stack
 
-- [Yarn](https://yarnpkg.com/) package manager
+<!-- - [Yarn](https://yarnpkg.com/) package manager -->
 - [React](https://react.dev/) library for building user interfaces
 - [Next.js](https://nextjs.org/) framework for React
 - [Tailwind CSS](https://tailwindcss.com/) for styling
@@ -51,17 +51,17 @@ The Birthday Bot module has the following entry functions:
   - `recipient`: The address of the recipient of the gift
   - `gift_amount_apt`: The amount of APT to be gifted to the recipient
   - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
-  - `remove_birthday_gift`: Allows the gift sender to cancel the gift before it is claimed. The user must provide the following arguments:
-    - `recipient`: The address of the recipient of the gift to be cancelled
-  - `claim_birthday_gift`: Allows the recipient to claim a gift once the birthday timestamp has passed. The user must provide the following arguments:
-    - `gifter`: The address of the sender of the gift to be claimed
+- `remove_birthday_gift`: Allows the gift sender to cancel the gift before it is claimed. The user must provide the following arguments:
+  - `recipient`: The address of the recipient of the gift to be cancelled
+- `claim_birthday_gift`: Allows the recipient to claim a gift once the birthday timestamp has passed. The user must provide the following arguments:
+  - `gifter`: The address of the sender of the gift to be claimed
 
 The Birthday Bot module has the following view functions:
 
 - `view_gifters_gifts`: Returns a list of all gifts sent by the specified address. The function returns the gifts in three lists: list of recipients, list of gift amounts, and list of timestamps. The user must provide the following arguments:
   - `gifter`: The address of the sender of the gifts to be returned
-  - `view_recipients_gifts`: Returns a list of all gifts received by the specified address. The function returns the gifts in three lists: list of senders, list of gift amounts, and list of timestamps. The user must provide the following arguments:
-    - `recipient`: The address of the recipient of the gifts to be returned
+- `view_recipients_gifts`: Returns a list of all gifts received by the specified address. The function returns the gifts in three lists: list of senders, list of gift amounts, and list of timestamps. The user must provide the following arguments:
+  - `recipient`: The address of the recipient of the gifts to be returned
 
 The Birthday Bot module has the following events (stored in `ModuleEvents`):
 
@@ -71,18 +71,18 @@ The Birthday Bot module has the following events (stored in `ModuleEvents`):
   - `gift_amount_apt`: The amount of APT to be gifted to the recipient
   - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
   - `gift_timestamp_seconds`: The timestamp when the gift was created or edited
-  - `birthday_gift_removed_events`: Emitted when a gift is cancelled. The event contains the following data:
-    - `gifter`: The address of the sender of the gift
-    - `recipient`: The address of the recipient of the gift
-    - `gift_amount_apt`: The amount of APT to be gifted to the recipient
-    - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
-    - `gift_timestamp_seconds`: The timestamp when the gift was cancelled
-  - `birthday_gift_claimed_events`: Emitted when a gift is claimed. The event contains the following data:
-    - `gifter`: The address of the sender of the gift
-    - `recipient`: The address of the recipient of the gift
-    - `gift_amount_apt`: The amount of APT to be gifted to the recipient
-    - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
-    - `gift_timestamp_seconds`: The timestamp when the gift was claimed
+- `birthday_gift_removed_events`: Emitted when a gift is cancelled. The event contains the following data:
+  - `gifter`: The address of the sender of the gift
+  - `recipient`: The address of the recipient of the gift
+  - `gift_amount_apt`: The amount of APT to be gifted to the recipient
+  - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
+  - `gift_timestamp_seconds`: The timestamp when the gift was cancelled
+- `birthday_gift_claimed_events`: Emitted when a gift is claimed. The event contains the following data:
+  - `gifter`: The address of the sender of the gift
+  - `recipient`: The address of the recipient of the gift
+  - `gift_amount_apt`: The amount of APT to be gifted to the recipient
+  - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
+  - `gift_timestamp_seconds`: The timestamp when the gift was claimed
 
 ### Module deployment details
 This dapp interacts with a deployed birthday bot instance on Aptos Testnet. The deployed module has the following properties:
@@ -630,8 +630,8 @@ const getEvents = async () => {
 ## Deploying the dapp locally
 
   1. Navigate to the `birthday-bot` directory
-  2. Run `yarn install` to install dependencies
-  3. Run `yarn dev` to start the development server
+  2. Run `npm install` to install dependencies
+  3. Run `npm run dev` to start the development server
   4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
 ## Completing the quest
