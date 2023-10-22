@@ -1,7 +1,8 @@
 # Birthday Bot FE quest starter template
-This is the starter template for Overmind's FE quest built on top of the Birthday Bot smart contract quest. The birthday bot quest can be viewed [here](https://overmind.xyz/quests/birthday-bot). 
+This is the starter template for Overmind's FE quest built on top of the Birthday Bot smart contract quest. The birthday bot quest can be viewed [here](https://overmind.xyz/quests/birthday-bot).
 
 # Table of Contents
+
 - [Birthday Bot FE quest starter template](#birthday-bot-fe-quest-starter-template)
 - [Table of Contents](#table-of-contents)
 - [Tech Stack](#tech-stack)
@@ -30,6 +31,7 @@ This is the starter template for Overmind's FE quest built on top of the Birthda
   - [Completing the quest](#completing-the-quest)
 
 # Tech Stack
+
 - [Yarn](https://yarnpkg.com/) package manager
 - [React](https://react.dev/) library for building user interfaces
 - [Next.js](https://nextjs.org/) framework for React
@@ -44,35 +46,38 @@ This FE quest is built on top of the Birthday Bot smart contract quest. The Birt
 
 ### Module details
 The Birthday Bot module has the following entry functions:
-  - `add_birthday_gift`: Allows a user to create a new or edit an existing birthday gift. The user must provide the following arguments: 
-    - `recipient`: The address of the recipient of the gift
-    - `gift_amount_apt`: The amount of APT to be gifted to the recipient
-    - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
-  - `remove_birthday_gift`: Allows the gift sender to cancel the gift before it is claimed. The user must provide the following arguments: 
+
+- `add_birthday_gift`: Allows a user to create a new or edit an existing birthday gift. The user must provide the following arguments:
+  - `recipient`: The address of the recipient of the gift
+  - `gift_amount_apt`: The amount of APT to be gifted to the recipient
+  - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
+  - `remove_birthday_gift`: Allows the gift sender to cancel the gift before it is claimed. The user must provide the following arguments:
     - `recipient`: The address of the recipient of the gift to be cancelled
-  - `claim_birthday_gift`: Allows the recipient to claim a gift once the birthday timestamp has passed. The user must provide the following arguments: 
+  - `claim_birthday_gift`: Allows the recipient to claim a gift once the birthday timestamp has passed. The user must provide the following arguments:
     - `gifter`: The address of the sender of the gift to be claimed
 
 The Birthday Bot module has the following view functions:
-  - `view_gifters_gifts`: Returns a list of all gifts sent by the specified address. The function returns the gifts in three lists: list of recipients, list of gift amounts, and list of timestamps. The user must provide the following arguments: 
-    - `gifter`: The address of the sender of the gifts to be returned
-  - `view_recipients_gifts`: Returns a list of all gifts received by the specified address. The function returns the gifts in three lists: list of senders, list of gift amounts, and list of timestamps. The user must provide the following arguments: 
+
+- `view_gifters_gifts`: Returns a list of all gifts sent by the specified address. The function returns the gifts in three lists: list of recipients, list of gift amounts, and list of timestamps. The user must provide the following arguments:
+  - `gifter`: The address of the sender of the gifts to be returned
+  - `view_recipients_gifts`: Returns a list of all gifts received by the specified address. The function returns the gifts in three lists: list of senders, list of gift amounts, and list of timestamps. The user must provide the following arguments:
     - `recipient`: The address of the recipient of the gifts to be returned
 
 The Birthday Bot module has the following events (stored in `ModuleEvents`):
-  - `birthday_gift_added_events`: Emitted when a new gift is created or an existing gift is edited. The event contains the following data: 
-    - `gifter`: The address of the sender of the gift
-    - `recipient`: The address of the recipient of the gift
-    - `gift_amount_apt`: The amount of APT to be gifted to the recipient
-    - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
-    - `gift_timestamp_seconds`: The timestamp when the gift was created or edited
-  - `birthday_gift_removed_events`: Emitted when a gift is cancelled. The event contains the following data: 
+
+- `birthday_gift_added_events`: Emitted when a new gift is created or an existing gift is edited. The event contains the following data:
+  - `gifter`: The address of the sender of the gift
+  - `recipient`: The address of the recipient of the gift
+  - `gift_amount_apt`: The amount of APT to be gifted to the recipient
+  - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
+  - `gift_timestamp_seconds`: The timestamp when the gift was created or edited
+  - `birthday_gift_removed_events`: Emitted when a gift is cancelled. The event contains the following data:
     - `gifter`: The address of the sender of the gift
     - `recipient`: The address of the recipient of the gift
     - `gift_amount_apt`: The amount of APT to be gifted to the recipient
     - `birthday_timestamp_seconds`: The timestamp when the recipient's gift can be claimed
     - `gift_timestamp_seconds`: The timestamp when the gift was cancelled
-  - `birthday_gift_claimed_events`: Emitted when a gift is claimed. The event contains the following data: 
+  - `birthday_gift_claimed_events`: Emitted when a gift is claimed. The event contains the following data:
     - `gifter`: The address of the sender of the gift
     - `recipient`: The address of the recipient of the gift
     - `gift_amount_apt`: The amount of APT to be gifted to the recipient
@@ -80,18 +85,20 @@ The Birthday Bot module has the following events (stored in `ModuleEvents`):
     - `gift_timestamp_seconds`: The timestamp when the gift was claimed
 
 ### Module deployment details
-This dapp interacts with a deployed birthday bot instance on Aptos Testnet. The deployed module has the following properties: 
+This dapp interacts with a deployed birthday bot instance on Aptos Testnet. The deployed module has the following properties:
+
 - module address: `0x15ead142473563d1a07fae2aa04c6d38d19b33222c110a4667af357aa31439c2`
 - module name: `birthday_bot`
 
 The resource account that is created for the module in the `init_module` function is: `0x770e0ac04e517bfe36a25e3f7cd8f303842ec9a819adb579167c9086cce74ebd`
 
-These properties are set up in the [`next.config.js`](./birthday-bot/next.config.js) and can be used in the tsx file with: 
+These properties are set up in the [`next.config.js`](./birthday-bot/next.config.js) and can be used in the tsx file with:
+
 - module address: `process.env.MODULE_ADDRESS`
 - module name: `process.env.MODULE_NAME`
 - module's resource account address: `process.env.RESOURCE_ACCOUNT_ADDRESS`
 
-The deployed module can be viewed [here](https://explorer.aptoslabs.com/account/0x15ead142473563d1a07fae2aa04c6d38d19b33222c110a4667af357aa31439c2/modules/code/birthday_bot?network=testnet). 
+The deployed module can be viewed [here](https://explorer.aptoslabs.com/account/0x15ead142473563d1a07fae2aa04c6d38d19b33222c110a4667af357aa31439c2/modules/code/birthday_bot?network=testnet).
 
 ## React and Next.js
 This dapp is built using React and Next.js. React is a JavaScript library for building user interfaces. Next.js is a React framework that provides a number of features including server-side rendering, file-based routing, and automatic code splitting.
@@ -99,7 +106,8 @@ This dapp is built using React and Next.js. React is a JavaScript library for bu
 ### Conditional rendering
 This dapp uses conditional rendering to display different components based on the state of the dapp. The following examples show how conditional rendering is used in this dapp.
 
-The following code snippet shows how conditional rendering is used to display a loading message while the wallet is loading: 
+The following code snippet shows how conditional rendering is used to display a loading message while the wallet is loading:
+
 ```tsx
 // Get the isLoading property from the wallet adapter (boolean indicating if the wallet is loading)
 const { isLoading } = useWallet();
@@ -117,7 +125,8 @@ const { isLoading } = useWallet();
 </>
 ```
 
-The following code snippet shows how conditional rendering is used with the ternary operator to display a message based on the connected state of the wallet: 
+The following code snippet shows how conditional rendering is used with the ternary operator to display a message based on the connected state of the wallet:
+
 ```tsx
 // Get the connected property from the wallet adapter (boolean indicating if the wallet is connected)
 const { connected } = useWallet();
@@ -145,7 +154,8 @@ There are times when a list of data needs to be rendered. If the list is static,
 
 This dapp uses the `map` function to render lists of data. The following examples show how the `map` function is used in this dapp.
 
-The following code snippet shows how the `map` function is used to render a list of wallets: 
+The following code snippet shows how the `map` function is used to render a list of wallets:
+
 ```tsx
 // Get the wallets property from the wallet adapter
 const { wallets } = useWallet();
@@ -169,20 +179,23 @@ const { wallets } = useWallet();
 ```
 
 ## Wallet adapter
-The Aptos wallet adapter contains the logic for connecting to the Aptos wallet and submitting transactions. 
+The Aptos wallet adapter contains the logic for connecting to the Aptos wallet and submitting transactions.
 
 
 ### Initializing the wallet adapter
 
-The wallet adapter provider is initialized in the [`app/layout.tsx`](./birthday-bot/app/layout.tsx) file. 
+The wallet adapter provider is initialized in the [`app/layout.tsx`](./birthday-bot/app/layout.tsx) file.
 
 ### useWallet hook
 
-All wallet properties and functions are provided with the `useWallet` hook. The hook must be imported from the wallet adapter package: 
+All wallet properties and functions are provided with the `useWallet` hook. The hook must be imported from the wallet adapter package:
+
 ```tsx
 import { useWallet } from '@aptos-labs/aptos-wallet-adapter-react';
 ```
-Once the hook is imported, you can use the provide properties and functions: 
+
+Once the hook is imported, you can use the provide properties and functions:
+
 ```tsx
 const {
   connect,    // connect to the wallet
@@ -202,7 +215,8 @@ const {
 ```
 
 ### Connecting and disconnecting from the wallet
-To connect to a wallet, use the `connect` function provided by the `useWallet` hook as follows: 
+To connect to a wallet, use the `connect` function provided by the `useWallet` hook as follows:
+
 ```tsx
 // Get the connect function from the wallet adapter
 const { connect } = useWallet();
@@ -224,7 +238,8 @@ const handleConnect = (walletName: string) => {
 </div>
 ```
 
-Similarly, to disconnect from the wallet, use the `disconnect` function provided by the `useWallet` hook as follows: 
+Similarly, to disconnect from the wallet, use the `disconnect` function provided by the `useWallet` hook as follows:
+
 ```tsx
 // Get the disconnect function from the wallet adapter
 const { disconnect } = useWallet();
@@ -242,7 +257,8 @@ const handleDisconnect = () => {
 
 ### Signing and submitting transactions
 
-To sign and submit a transaction, use the `signAndSubmitTransaction` function provided by the `useWallet` hook as follows: 
+To sign and submit a transaction, use the `signAndSubmitTransaction` function provided by the `useWallet` hook as follows:
+
 ```tsx
 /*
   Function to sign and submit a transaction. In this case, the transaction is a call to transfer 10 
@@ -293,7 +309,8 @@ const handleSignAndSubmitTransaction = async () => {
 
 ### Account information
 
-The `account` property provided by the `useWallet` hook contains the following information: 
+The `account` property provided by the `useWallet` hook contains the following information:
+
 ```tsx
 declare type AccountInfo = {
   address: string;
@@ -310,7 +327,8 @@ declare type AccountInfo = {
 
 ### Network information
 
-The `network` property provided by the `useWallet` hook contains the following information: 
+The `network` property provided by the `useWallet` hook contains the following information:
+
 ```tsx
 declare type NetworkInfo = {
   name: NetworkName;
@@ -339,7 +357,8 @@ enum NetworkName {
 
 ### Wallet information
 
-The `wallet` property provided by the `useWallet` hook contains the following information: 
+The `wallet` property provided by the `useWallet` hook contains the following information:
+
 ```tsx
 declare type WalletInfo = {
   name: WalletName; // name of the wallet as a string
@@ -355,7 +374,8 @@ declare type WalletInfo = {
 
 ### Wallets information
 
-The `wallets` property provided by the `useWallet` hook contains the following information: 
+The `wallets` property provided by the `useWallet` hook contains the following information:
+
 ```tsx
 declare type Wallet<Name extends string = string> = AdapterPlugin<Name> & {
   readyState?: WalletReadyState;
@@ -445,15 +465,17 @@ declare enum WalletReadyState {
 ```
 
 ## Aptos API
-The Aptos API is used to read data from the Aptos blockchain. In this dapp, the API is used to call view functions as well as query events emitted by the birthday bot module. 
+The Aptos API is used to read data from the Aptos blockchain. In this dapp, the API is used to call view functions as well as query events emitted by the birthday bot module.
 
 ### Calling view functions
-The Aptos API can be used to call view functions. The API view function endpoint is: 
+The Aptos API can be used to call view functions. The API view function endpoint is:
+
 ```
 https://fullnode.testnet.aptoslabs.com/v1/view
 ```
 
-Making a request to this endpoint can be done the following way: 
+Making a request to this endpoint can be done the following way:
+
 ```tsx
 // State to store balance with default value of "0"
 const [balance, setBalance] = useState<string>("0");
@@ -506,14 +528,17 @@ const getBalance = async (address: string) => {
 </div>
 ```
 
-### Retrieve account data 
-The Aptos API can be used to retrieve account data. The API account endpoint is: 
+### Retrieve account data
+The Aptos API can be used to retrieve account data. The API account endpoint is:
+
 ```
 https://fullnode.testnet.aptoslabs.com/v1/accounts/{address}
 ```
+
 where `{address}` is the address of the account to retrieve data for.
 
-Making a request to this endpoint can done the following way: 
+Making a request to this endpoint can done the following way:
+
 ```tsx
 const getAccountData = async () => {
   // Making the API request
@@ -532,13 +557,16 @@ const getAccountData = async () => {
 ```
 
 ### Querying events
-The Aptos API can be used to query events emitted by the birthday bot module. The API event endpoint is: 
+The Aptos API can be used to query events emitted by the birthday bot module. The API event endpoint is:
+
 ```
 https://fullnode.testnet.aptoslabs.com/v1/accounts/{address}/events/{event_handle}/{field_name}
 ```
+
 where `{address}` is the address of the account that holds the object containing the events, `{event_handle}` is the type of the object that contains the events, and `{field_name}` is the name of the field that contains the events.
 
 Making a request to this endpoint can be done the following way:
+
 ```tsx
 // Event types
 export type Event = {
@@ -600,16 +628,18 @@ const getEvents = async () => {
 
 # Quest
 ## Deploying the dapp locally
+
   1. Navigate to the `birthday-bot` directory
   2. Run `yarn install` to install dependencies
   3. Run `yarn dev` to start the development server
   4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
 ## Completing the quest
+
   1. Read through the [Developer Cheat Sheet](#developer-cheat-sheet) above to understand the dapp and the supporting dependencies. Look back to that section for reference as you complete the quest.
   2. Visit and try out the demo dapp [here](https://birthday-bot-fe-reference.vercel.app/). Feel free to use this demo as a reference as you complete the quest.
-  3. Deploy and open the dapp locally as described [above](#deploying-the-dapp-locally). 
-  4. Complete the quests by following the TODO comments in the following files (recommended order): 
+  3. Deploy and open the dapp locally as described [above](#deploying-the-dapp-locally).
+  4. Complete the quests by following the TODO comments in the following files (recommended order):
        - [ ] [`components/walletSelector.tsx`](./birthday-bot/components/walletSelector.tsx)
        - [ ] [`app/page.tsx`](./birthday-bot/app/page.tsx)
        - [ ] [`app/GiftCreator.tsx`](./birthday-bot/app/GiftCreator.tsx)
