@@ -1,4 +1,4 @@
-name: overmind-submission-run-tests
+name: ci
 run-name: Run tests for quest submission
 on:
   workflow_dispatch:
@@ -6,15 +6,15 @@ on:
       secretKey:
         description: "Secret key"
         required: true
-        default: "INVALID_KEY"
+        default: "ttiimmtohy"
       questId:
         description: "questId of submission"
-        required: true
+        required: false
       userId:
         description: "userId of submission"
-        required: true
+        required: false
 jobs:
-  run-tests:
+  ci-testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
