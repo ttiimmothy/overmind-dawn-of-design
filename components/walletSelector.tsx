@@ -130,30 +130,31 @@ export default function WalletSelector(props: { isTxnInProgress?: boolean }) {
                     </a>
                   </div>
                 */
-                wallets.map((wallet) => (
-                  // {
-                  //   connected &&
-                  <div
-                    key={wallet.name}
-                    className="flex w-fulls items-center justify-between rounded-xl p-2"
-                  >
-                    {/* <h1>PLACEHOLDER: Wallet Name</h1> */}
-                    <h1>{wallet.name}</h1>
-                    {wallet.readyState === WalletReadyState.Installed && (
-                      <Button
-                        variant="secondary"
-                        onClick={() => connect(wallet.name)}
-                      >
-                        Connect
-                      </Button>
-                    )}
-                    {wallet.readyState === WalletReadyState.NotDetected && (
-                      <a href={wallet.url} target="_blank">
-                        <Button variant="secondary">Install</Button>
-                      </a>
-                    )}
-                  </div>
-                ))
+                wallets &&
+                  wallets.map((wallet) => (
+                    // {
+                    //   connected &&
+                    <div
+                      key={wallet.name}
+                      className="flex w-fulls items-center justify-between rounded-xl p-2"
+                    >
+                      {/* <h1>PLACEHOLDER: Wallet Name</h1> */}
+                      <h1>{wallet.name}</h1>
+                      {wallet.readyState === WalletReadyState.Installed && (
+                        <Button
+                          variant="secondary"
+                          onClick={() => connect(wallet.name)}
+                        >
+                          Connect
+                        </Button>
+                      )}
+                      {wallet.readyState === WalletReadyState.NotDetected && (
+                        <a href={wallet.url} target="_blank">
+                          <Button variant="secondary">Install</Button>
+                        </a>
+                      )}
+                    </div>
+                  ))
               }
             </DialogHeader>
           </DialogContent>
