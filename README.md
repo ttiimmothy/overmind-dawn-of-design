@@ -1,10 +1,10 @@
-# Birthday Bot FE quest starter template
+# Overmind Dawn of Design
 
 This is the starter template for Overmind's FE quest built on top of the Birthday Bot smart contract quest. The birthday bot quest can be viewed [here](https://overmind.xyz/quests/birthday-bot).
 
 # Table of Contents
 
-- [Birthday Bot FE quest starter template](#birthday-bot-fe-quest-starter-template)
+- [Overmind Dawn of Design](#overmind-dawn-of-design)
 - [Table of Contents](#table-of-contents)
 - [Tech Stack](#tech-stack)
 - [Developer Cheat Sheet](#developer-cheat-sheet)
