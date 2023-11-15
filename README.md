@@ -1,5 +1,8 @@
 # Birthday Bot FE quest starter template
+<<<<<<< HEAD
 
+=======
+>>>>>>> 83d68aefdb150edcd08a550ad9381efed08a8ac5
 This is the starter template for Overmind's FE quest built on top of the Birthday Bot smart contract quest. The birthday bot quest can be viewed [here](https://overmind.xyz/quests/birthday-bot).
 
 # Table of Contents
